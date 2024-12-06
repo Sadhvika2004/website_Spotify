@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #121212; /* Dark background */
+        color: #fff; /* White text color */
+    }
+
+    h2, h3 {
+        color: #1DB954; /* Spotify green */
+        margin-bottom: 20px;
+    }
+
+    form {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        width: 300px;
+        border: 1px solid #333;
+        border-radius: 5px;
+        background: #282828; /* Dark input background */
+        color: #fff; /* White text color */
+    }
+
+    input[type="text"]::placeholder {
+        color: #aaa; /* Light gray placeholder text */
+    }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background: #1DB954; /* Green button */
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    button:hover {
+        background: #1aa34a; /* Slightly lighter green on hover */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: #181818; /* Dark table background */
+        border: 1px solid #333;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #333;
+    }
+
+    th {
+        background: #282828; /* Darker background for header */
+        color: #1DB954; /* Green header text */
+    }
+
+    tr:hover {
+        background: #333; /* Highlight row on hover */
+    }
+
+    p {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: #aaa; /* Light gray for no results text */
+        text-align: center;
+    }
+</style>
+
+<div>
+    <h2>Search Songs</h2>
+    <form action="/search" method="GET">
+        <input type="text" name="query" value="{{ query }}" placeholder="Search by song name or artist">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if query %}
+        {% if content %}
+            <h3>Search Results:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Song ID</th>
+                        <th>Song Name</th>
+                        <th>Artist</th>
+                        <th>Streamed Hours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for song in content %}
+                        <tr>
+                            <td>{{ song.song_id }}</td>
+                            <td>{{ song.song_name }}</td>
+                            <td>{{ song.artist }}</td>
+                            <td>{{ song.streamed_hours }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No results found for "{{ query }}".</p>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
