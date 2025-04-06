@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My App{% endblock %}</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Black background */
+            color: #fff; /* White text color */
+            line-height: 1.6;
+        }
+
+        /* Header Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #1DB954;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        header .logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff; /* White logo text */
+        }
+
+        /* Navigation Styling */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff; /* White text for links */
+            font-weight: bold;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #000; /* Black text on hover */
+            transform: scale(1.1); /* Slight zoom effect */
+        }
+
+        /* Content Area Styling */
+        main {
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <span>Spotify</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Songs</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/topsongs">Top Songs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Content Section -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
